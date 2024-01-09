@@ -62,3 +62,17 @@ services:
 networks:
  app:
 ```
+```dockerfile
+# Use NGINX as a base image
+FROM nginx:alpine
+
+# Copy HTML and JavaScript files to the NGINX default serving directory
+COPY index.html /usr/share/nginx/html/
+COPY script.js /usr/share/nginx/html/
+
+# Expose port 80
+EXPOSE 80
+```
+```bash
+docker build -t hello-world .
+```
