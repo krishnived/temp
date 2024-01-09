@@ -1,84 +1,18 @@
-```yaml
-version: '3.8'
-
-services:
-  service1:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-  service2:
-    image: alpine
-
-networks:
-  mynetwork:
-```
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>The best website ever!</title>
-</head>
-<body>
-    <h1>Welcome to the website!</h1>
-</body>
-</html>
+```bash
+docker volume create volume
 ```
 ```bash
-docker-compose up -d --force-recreate
-```
-```yaml
-version: '3.8'
-services:
- service1:
-  build: .
-  ports:
-  - "80:80"
-```
-```dockerfile
-FROM httpd
-COPY ./index.html /usr/local/apache2/htdocs/
-```
-```yaml
-version: '3.8'
-
-services:
- api:
- build:
- context: .
- dockerfile: dockerfile_api
- container_name: api
- networks:
- - app
-
- web:
- build:
- context: .
- dockerfile: dockerfile_web
- ports:
- - "80:80"
- networks:
- - app
-
-networks:
- app:
-```
-```dockerfile
-# Use NGINX as a base image
-FROM nginx:alpine
-
-# Copy HTML and JavaScript files to the NGINX default serving directory
-COPY index.html /usr/share/nginx/html/
-COPY script.js /usr/share/nginx/html/
-
-# Expose port 80
-EXPOSE 80
+docker volume ls
 ```
 ```bash
-docker build -t hello-world .
+docker run --name hello-world -v volume:/usr/share/nginx/html -p 8080:80 nginx:alpine
 ```
 ```bash
-docker images
+docker ps
 ```
 ```bash
-docker run -d --name hello-world -p8080:80 hello-world
+docker cp index.html hello-world:/usr/share/nginx/html
+```
+```bash
+docker rm -f hello-world
 ```
