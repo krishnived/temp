@@ -76,3 +76,9 @@ EXPOSE 80
 ```bash
 docker build -t hello-world .
 ```
+```bash
+docker images
+```
+```bash
+docker run -d --name hello-world -p8080:80 hello-world
+```
